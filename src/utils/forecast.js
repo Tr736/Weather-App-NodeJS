@@ -16,13 +16,14 @@ const forecast = (long, lat, completion) => {
         completion(errorMessage, undefined)
     } else {
 
-        const {summary, temperature, precipProbability} = body.currently
+        const {summary, temperature, precipProbability, windSpeed} = body.currently
         if (body.error) {
             const errorMessage =  body.code + ': Unable to find location!'
             completion(errorMessage, undefined)
      
         } else {
-            const successMessage = summary + ' It is currently ' + temperature + ' degrees out. There is ' + precipProbability + '% chance of rain.'
+
+            const successMessage = summary + ' It is currently ' + temperature + ' degrees out. There is ' + precipProbability + '% chance of rain with a wind speed of ' + windSpeed + "kmh"
             completion(undefined, successMessage)
         }
     }
